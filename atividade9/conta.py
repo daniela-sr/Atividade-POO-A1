@@ -1,16 +1,26 @@
-Conta:
+class Conta:
 
-    __slots__ = ['_numero', '_titular', '_saldo', '_limite', 'identificador']
-    _id = 1
+    __slots__ = ['_numero', '_titular', '_saldo', '_limite', '_id']
+
+    # Atributo de classe para controle do identificador
+    identificador = 1
 
     def __init__(self, numero, titular, saldo, limite=1000.0):
         self._numero = numero
         self._titular = titular
         self._saldo = saldo
         self._limite = limite
-        self.identificador = Conta._id
-        Conta._id += 1
 
+        # Atribuindo identificador único
+        self._id = Conta.identificador
+        Conta.identificador += 1
+
+    # Getter para id
+    @property
+    def id(self):
+        return self._id
+
+    # Getter e Setter para saldo
     @property
     def saldo(self):
         return self._saldo
@@ -22,21 +32,10 @@ Conta:
         else:
             self._saldo = saldo
 
-    @property
-    def numero(self):
-        return self._numero
-
-    @property
-    def titular(self):
-        return self._titular
-
+    # Getter e Setter para limite
     @property
     def limite(self):
         return self._limite
-    
-    @property
-    def identificador(self):
-        return self._identificador
 
     @limite.setter
     def limite(self, limite):
@@ -45,45 +44,47 @@ Conta:
         else:
             self._limite = limite
 
-    def deposita(self, valor):
-        self._saldo += valor
+    # Getter para numero
+    @property
+    def numero(self):
+        return self._numero
 
-    def saca(self, valor):
-        if self._saldo < valor:
-            return False
+    # Getter e Setter para titular
+    @property
+    def titular(self):
+        return self._titular
+
+    @titular.setter
+    def titular(self, titular):
+        self._titular = titular
+
+    # Métodos operacionais
+    def depositar(self, valor):
+        if valor > 0:
+            self._saldo += valor
+        else:
+            print("Valor de depósito inválido")
+
+    def sacar(self, valor):
+        if valor > (self._saldo + self._limite):
+            print("Saldo insuficiente")
+        elif valor <= 0:
+            print("Valor de saque inválido")
         else:
             self._saldo -= valor
-            return True
-
-    def transfere_para(self, destino, valor):
-        if self.saca(valor):
-            destino.deposita(valor)
-            return True
-        else:
-            return False
 
     def extrato(self):
-        print(f"Número: {self._numero}")
-        print(f"Titular: {self._titular}")
-        print(f"Saldo: {self._saldo}")
-        
+        print(f"Conta: {self._numero} | Titular: {self._titular} | Saldo: {self._saldo} | ID: {self._id}")
 
-conta = Conta('123-4', 'João', 500.0, 1000.0)
+conta1 = Conta(123, "Ana", 5000)
+conta2 = Conta(456, "Bruno", 1000)
+conta3 = Conta(789, "Carla", 3000)
 
-print(conta._numero)  #Funciona, mas não é recomendado
-conta._numero = '999-9'  #Funciona, mas quebra o encapsulamento
-print(conta._numero)
+print(conta1.id)  # 🔸 Saída: 1
+print(conta2.id)  # 🔸 Saída: 2
+print(conta3.id)  # 🔸 Saída: 3
 
-print(conta.saldo)       #Acesso controlado
-conta.saldo = 600        #Modifica se válido
-conta.saldo = -50        #Não permite saldo negativo
-
-Conta('123-4', 'João', 500.0, 1000.0).__dict__
-
-c1 = Conta('123-4', 'João', 100.0)
-c2 = Conta('567-8', 'Maria', 200.0)
-c3 = Conta('999-9', 'José', 300.0)
-
-print(c1.identificador)  # 1
-print(c2.identificador)  # 2
-print(c3.identificador)  # 3
+# Verificando no extrato
+conta1.extrato()  # Conta: 123 | Titular: Ana | Saldo: 5000 | ID: 1
+conta2.extrato()  # Conta: 456 | Titular: Bruno | Saldo: 1000 | ID: 2
+conta3.extrato()  # Conta: 789 | Titular: Carla | Saldo: 3000 | ID: 3
