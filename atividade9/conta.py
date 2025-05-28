@@ -76,15 +76,15 @@ class Conta:
     def extrato(self):
         print(f"Conta: {self._numero} | Titular: {self._titular} | Saldo: {self._saldo} | ID: {self._id}")
 
-conta1 = Conta(123, "Ana", 5000)
-conta2 = Conta(456, "Bruno", 1000)
-conta3 = Conta(789, "Carla", 3000)
+conta1 = Conta(123, "Anna Clara Santos", 5000)
+conta2 = Conta(456, "Bruno Medelho", 1000)
+conta3 = Conta(789, "Carla Santoro", 3000)
 
-print(conta1.id)  # 🔸 Saída: 1
-print(conta2.id)  # 🔸 Saída: 2
-print(conta3.id)  # 🔸 Saída: 3
+print(conta1.id)  
+print(conta2.id)  
+print(conta3.id)  
 
 # Verificando no extrato
-conta1.extrato()  # Conta: 123 | Titular: Ana | Saldo: 5000 | ID: 1
-conta2.extrato()  # Conta: 456 | Titular: Bruno | Saldo: 1000 | ID: 2
-conta3.extrato()  # Conta: 789 | Titular: Carla | Saldo: 3000 | ID: 3
+conta1.extrato()  
+conta2.extrato()  
+conta3.extrato()  
