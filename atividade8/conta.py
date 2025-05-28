@@ -1,22 +1,29 @@
-#Execicio 1: Criando uma conta
-#Nesse exercicio foi criado uma conta junto com suas caracteristicas e funcionalidades em um mesmo arquivo.
+#Exercicio 2: Primeira classe em python
+class Conta:
 
-def cria_conta(numero, titular, saldo, limite):
-  conta = {"numero": numero, "titular": titular, "saldo": saldo, "limite": limite} #Variável do tipo dicionário
-  return conta
+    def __init__(self, numero, titular, saldo, limite): # Inicializa uma nova conta.
+        self.numero = numero
+        self.titular = titular
+        self.saldo = saldo
+        self.limite = limite
 
-def deposita(conta, valor):#A função adiciona o valor ao saldo da conta
-  conta['saldo'] += valor #Otimização no código para não precisar escrever conta['saldo'] novamente
+    def deposita(self, valor): #Deposita um valor no saldo da conta.
+        self.saldo += valor
 
-def saca(conta, valor):
-  conta['saldo'] -= valor #A função subtrai o valor do saldo da conta
+    def saca(self, valor): #Realiza um saque na conta se houver saldo suficiente.
+        if self.saldo < valor:
+            return False
+        else:
+            self.saldo -= valor
+            return True
 
-def extrato(conta): #A função imprime o número e o saldo
-  print("numero: {} \nsaldo: {}".format(conta['numero'], conta['saldo']))
+    def extrato(self):#Imprime o número da conta e o saldo atual.
+        print(f"Numero: {self.numero}\nSaldo: {self.saldo:.2f}")
 
-conta = cria_conta(123, "João Pedro Pascuti", 120.0, 1000.0)
-deposita(conta, 50.0)
-extrato(conta)
-
-saca(conta, 20.0)
-extrato(conta)
+    def transfere_para(self, destino, valor):#Realiza uma transferência para outra conta.
+        retirou = self.saca(valor)
+        if not retirou:
+            return False
+        else:
+            destino.deposita(valor)
+            return True

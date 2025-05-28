@@ -1,4 +1,4 @@
-class Conta:
+Conta:
 
     __slots__ = ['_numero', '_titular', '_saldo', '_limite', 'identificador']
     _id = 1
@@ -66,16 +66,17 @@ class Conta:
         print(f"Número: {self._numero}")
         print(f"Titular: {self._titular}")
         print(f"Saldo: {self._saldo}")
+        
 
 conta = Conta('123-4', 'João', 500.0, 1000.0)
 
-print(conta._numero)  # ⚠️ Funciona, mas não é recomendado
-conta._numero = '999-9'  # ⚠️ Funciona, mas quebra o encapsulamento
+print(conta._numero)  #Funciona, mas não é recomendado
+conta._numero = '999-9'  #Funciona, mas quebra o encapsulamento
 print(conta._numero)
 
-print(conta.saldo)       # ✅ Acesso controlado
-conta.saldo = 600        # ✅ Modifica se válido
-conta.saldo = -50        # ❌ Não permite saldo negativo
+print(conta.saldo)       #Acesso controlado
+conta.saldo = 600        #Modifica se válido
+conta.saldo = -50        #Não permite saldo negativo
 
 Conta('123-4', 'João', 500.0, 1000.0).__dict__
 

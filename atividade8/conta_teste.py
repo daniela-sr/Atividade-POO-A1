@@ -1,30 +1,30 @@
-from conta import Conta
+from conta import Conta  #Importa a classe Conta do arquivo conta.py
 
-# Criação de contas
-conta1 = Conta('123-4', 'João', 120.0, 1000.0)
-conta2 = Conta('567-8', 'Maria', 500.0, 1500.0)
+#Criação de duas contas
+conta1 = Conta('123-4', 'João Pedro Pascuti', 120.0, 1000.0)
+conta2 = Conta('567-8', 'Maria Flor Santos', 500.0, 1500.0)
 
-# Teste de métodos
-print("Extrato da conta1:")
-conta1.extrato()
+#Verifica o tipo do objeto
+print(type(conta1))
 
-print("\nDepositando 50.0 na conta1:")
-conta1.deposita(50.0)
-conta1.extrato()
+print(conta1.numero)    
+print(conta1.titular)   
 
-print("\nSacando 20.0 da conta1:")
-conta1.saca(20.0)
-conta1.extrato()
+conta1.deposita(50.0)   
+conta1.extrato()        
 
-print("\nTransferindo 100.0 da conta1 para conta2:")
-conta1.transfere_para(conta2, 100.0)
-print("Extrato da conta1 após transferência:")
-conta1.extrato()
-print("Extrato da conta2 após receber transferência:")
-conta2.extrato()
+conta1.saca(20.0)       
+conta1.extrato()        
 
-# Testando tentativa de saque maior que saldo
-print("\nTentando sacar 1000.0 da conta1:")
-resultado = conta1.saca(1000.0)
-print("Saque realizado?" , resultado)
-conta1.extrato()
+#Transfere da conta1 para conta2
+sucesso = conta1.transfere_para(conta2, 100.0)  
+
+#Verifica se a transferência foi realizada
+if sucesso:
+    print("Transferência realizada com sucesso!")
+else:
+    print("Transferência não realizada!")
+
+#Verificar os extratos após a transferência
+conta1.extrato()  
+conta2.extrato()  
