@@ -18,7 +18,7 @@ Aqui aprendemos sobre a importância de **proteger os dados** internos de um obj
 
 ## 🔹 Capítulo 10: PyCharm IDE
 
-Este capítulo apresenta o **PyCharm**, uma IDE poderosa voltada ao desenvolvimento Python. Explica como instalar, criar projetos, configurar o interpretador Python e aproveitar recursos como **refatoração automática**, **debugging** e **auto complete**.
+Este capítulo apresenta o **PyCharm**, uma IDE poderosa voltada ao desenvolvimento Python. Explica como instalar, criar projetos, configurar o interpretador Python e aproveitar recursos como **refatoração automática**, **debugging** e **auto complete**. Entretanto, o meu projeto foi realizado primeiramente no Google Colab e segundamente realizado no Visual Studio Code (VS Code).
 
 ---
 
