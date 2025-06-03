@@ -67,4 +67,4 @@ Aqui é feito um panorama das principais **estruturas de dados** do Python: `lis
 
 Bons estudos e viva a programação orientada a objetos com Python! ♡
 
-### Atividade desenvolvida por Daniela Silva Rodrigues <3
+Atividade desenvolvida por Daniela Silva Rodrigues <3
