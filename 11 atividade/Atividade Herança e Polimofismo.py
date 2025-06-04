@@ -1,49 +1,48 @@
-class Conta:
+class Conta: #Define a classe base Conta
     def __init__(self, numero, titular, saldo, limite):
         self._numero = numero
         self._titular = titular
         self._saldo = saldo
-        self._limite = limite
+        self._limite = limite #Os atributos são privados, dá para identificar através do uso do underscore _
 
     @property
-    def numero(self):
+    def numero(self): #Retorna o número da conta
         return self._numero
 
     @property
-    def titular(self):
+    def titular(self): #Retorna o nome do titular
         return self._titular
 
     @property
-    def saldo(self):
+    def saldo(self): #Retorna o saldo
         return self._saldo
 
     @property
-    def limite(self):
+    def limite(self): #Retorna o limite da conta
         return self._limite
 
-    def deposita(self, valor):
+    def deposita(self, valor): #Adiciona um valor ao saldo da conta
         self._saldo += valor
 
-    def saca(self, valor):
+    def saca(self, valor): #Tenta realizar um saque
         if self._saldo < valor:
             return False
         else:
             self._saldo -= valor
             return True
 
-    def extrato(self):
+    def extrato(self): #Imprime o número e o saldo da conta
         print(f"Numero: {self.numero}\nSaldo: {self.saldo:.2f}")
 
-    def transfere_para(self, destino, valor):
+    def transfere_para(self, destino, valor): #Tenta sacar da conta atual
         retirou = self.saca(valor)
         if not retirou:
             return False
         else:
-            destino.deposita(valor)
+            destino.deposita(valor) #Se der certo, deposita na conta destino.
             return True
 
-    def atualiza(self, taxa):
-        """Atualiza a conta com a taxa fornecida"""
+    def atualiza(self, taxa): #Atualiza do dado da conta
         self._saldo += self._saldo * taxa
         return self._saldo
 
@@ -51,7 +50,7 @@ class Conta:
         return f"Dados da Conta:\nNumero: {self._numero}\nTitular: {self._titular}\nSaldo: {self._saldo:.2f}\nLimite: {self._limite:.2f}"
 
 
-class ContaCorrente(Conta):
+class ContaCorrente(Conta): #A classe conta corrente herda os métodos e atributos de conta
     def atualiza(self, taxa):
         self._saldo += self._saldo * taxa * 2
         return self._saldo
@@ -60,13 +59,13 @@ class ContaCorrente(Conta):
         self._saldo += valor - 0.10  # Desconta 10 centavos do depósito
 
 
-class ContaPoupanca(Conta):
+class ContaPoupanca(Conta): #Define a classe Conta Paupança
     def atualiza(self, taxa):
         self._saldo += self._saldo * taxa * 3
         return self._saldo
 
 
-class AtualizadorDeContas:
+class AtualizadorDeContas: #Aplica a taxa de atualização em várias contas
     def __init__(self, selic, saldo_total=0):
         self._selic = selic
         self._saldo_total = saldo_total
@@ -87,7 +86,7 @@ if __name__ == '__main__':
     cc = ContaCorrente('123-5', 'Jose', 1000.0, 1000.0)
     cp = ContaPoupanca('123-6', 'Maria', 1000.0, 1000.0)
 
-    # Atualizando as contas com taxa de 1% (0.01)
+    # Atualizando as contas com taxa de 1% 
     c.atualiza(0.01)
     cc.atualiza(0.01)
     cp.atualiza(0.01)
