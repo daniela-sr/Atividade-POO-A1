@@ -1,11 +1,9 @@
-# SISTEMA DE CÁLCULO DE IMPOSTOS COM MIX-IN
-
-class TributavelMixIn:
+class TributavelMixIn: #Define uma classe Mix In
     def get_valor_imposto(self):
-        raise NotImplementedError("Subclasses devem implementar get_valor_imposto")
+        raise NotImplementedError("Subclasses devem implementar get_valor_imposto") #Indica que o método é obrigatório
 
 
-class Conta:
+class Conta: #Conta Comum
     def __init__(self, numero, titular, saldo=0.0):
         self._numero = numero
         self._titular = titular
@@ -68,7 +66,6 @@ class ManipuladorDeTributaveis:
         return total
 
 
-# ---------- Programa Principal ----------
 if __name__ == "__main__":
     cc = ContaCorrente("123-4", "João", 1000.0)
     ci = ContaInvestimento("456-7", "Ana", 2000.0)
