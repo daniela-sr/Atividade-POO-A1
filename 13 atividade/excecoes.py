@@ -1,35 +1,26 @@
 import abc
 
-
-# ---------------- Exceção personalizada ----------------
-class SaldoInsuficienteError(RuntimeError):
-    """Exceção lançada quando não há saldo suficiente para saque."""
+class SaldoInsuficienteError(RuntimeError): #Indica erro relacionado ao valor do saque
     pass
 
-
-# ---------------- Interface Tributável ----------------
-class Tributavel(abc.ABC):
-    """Interface para objetos que são tributáveis."""
-
+class Tributavel(abc.ABC): #Define uma interface abstrata
     @abc.abstractmethod
-    def get_valor_imposto(self):
-        """Deve retornar o valor do imposto do objeto."""
+    def get_valor_imposto(self): 
         pass
 
 
-# ---------------- Classe Conta ----------------
-class Conta(abc.ABC):
+class Conta(abc.ABC): #Representa uma conta bancária comum
     def __init__(self, titular, numero, saldo=0.0, limite=1000.0):
         self._titular = titular
         self._numero = numero
         self._saldo = saldo
         self._limite = limite
 
-    @property
+    @property #Propriedade apenas leitura
     def saldo(self):
         return self._saldo
 
-    def deposita(self, valor):
+    def deposita(self, valor): 
         if valor < 0:
             raise ValueError('Você tentou depositar um valor negativo.')
         self._saldo += valor
@@ -49,10 +40,9 @@ class Conta(abc.ABC):
         pass
 
 
-# ---------------- ContaCorrente ----------------
-class ContaCorrente(Conta):
+class ContaCorrente(Conta): #Herda dados de "Conta"
     def atualiza(self, taxa):
-        self._saldo += self._saldo * taxa * 2
+        self._saldo += self._saldo * taxa * 2 
 
     def saca(self, valor):
         if valor < 0:
@@ -62,11 +52,10 @@ class ContaCorrente(Conta):
         self._saldo -= (valor + 0.10)
 
     def get_valor_imposto(self):
-        return self._saldo * 0.01
+        return self._saldo * 0.01 #1% imposto
 
 
-# ---------------- ContaPoupanca ----------------
-class ContaPoupanca(Conta):
+class ContaPoupanca(Conta): #Herda dados de "Conta" novamente
     def atualiza(self, taxa):
         self._saldo += self._saldo * taxa * 3
 
@@ -76,8 +65,7 @@ class ContaPoupanca(Conta):
         self._saldo += valor
 
 
-# ---------------- ContaInvestimento ----------------
-class ContaInvestimento(Conta):
+class ContaInvestimento(Conta): #Mais uma subclasse de Conta
     def atualiza(self, taxa):
         self._saldo += self._saldo * taxa * 5
 
@@ -85,8 +73,7 @@ class ContaInvestimento(Conta):
         return self._saldo * 0.03
 
 
-# ---------------- SeguroDeVida ----------------
-class SeguroDeVida:
+class SeguroDeVida: #Não herda conta, mas pode ser tributável
     def __init__(self, valor, titular, numero_apolice):
         self._valor = valor
         self._titular = titular
@@ -99,25 +86,20 @@ class SeguroDeVida:
         return f"SeguroDeVida({self._titular}, {self._numero_apolice})"
 
 
-# ---------------- Manipulador de Tributáveis ----------------
-class ManipuladorDeTributaveis:
+class ManipuladorDeTributaveis:#calcula o total de impostos
     def calcula_impostos(self, lista_tributaveis):
         total = 0
-        for t in lista_tributaveis:
+        for t in lista_tributaveis: #Verificação
             if isinstance(t, Tributavel):
                 total += t.get_valor_imposto()
             else:
                 print(f"{t} não é um tributável")
         return total
 
-
-# ---------------- Registro das classes como Tributáveis ----------------
-Tributavel.register(ContaCorrente)
+Tributavel.register(ContaCorrente)# Registro das classes como tributáveis
 Tributavel.register(SeguroDeVida)
 Tributavel.register(ContaInvestimento)
 
-
-# ---------------- Programa Principal ----------------
 if __name__ == '__main__':
     print('--- Testando saques e depósitos com exceções ---')
 
