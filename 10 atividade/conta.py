@@ -1,4 +1,4 @@
-class Conta:
+class Conta: #Define a classe Conta
 
     def __init__(self, numero, titular, saldo, limite):
         self._numero = numero
@@ -32,7 +32,7 @@ class Conta:
             self._saldo -= valor
             return True
 
-    def extrato(self):
+    def extrato(self): #Mostra o extrato
         print(f"Numero: {self.numero}\nSaldo: {self.saldo:.2f}")
 
     def transfere_para(self, destino, valor):
