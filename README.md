@@ -67,7 +67,7 @@ Aqui é feito um panorama das principais **estruturas de dados** do Python: `lis
 ### Dani como usar o Google Colab?
 O Google Colab é uma ferramenta gratuita do Google que permite rodar códigos Python online, sem precisar instalar nada. Ideal para estudos, testes e projetos em nuvem.
 
-##Passo a Passo:
+## Passo a Passo:
 Acesse: https://colab.research.google.com/
 
 Clique em "Novo notebook" (ou abra um notebook existente do seu Google Drive).
