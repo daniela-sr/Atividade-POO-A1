@@ -61,8 +61,6 @@ class Conta(abc.ABC):
                 f"Saldo: {self._saldo:.2f}\n"
                 f"Limite: {self._limite:.2f}")
 
-
-# ---------- Conta Corrente ----------
 class ContaCorrente(Conta):
     def __init__(self, numero, titular, saldo=0, limite=1000.0):
         super().__init__(numero, titular, saldo, limite)
@@ -75,8 +73,6 @@ class ContaCorrente(Conta):
     def deposita(self, valor):
         self._saldo += valor - 0.10
 
-
-# ---------- Conta Poupança ----------
 class ContaPoupanca(Conta):
     def __init__(self, numero, titular, saldo=0, limite=1000.0):
         super().__init__(numero, titular, saldo, limite)
@@ -86,8 +82,6 @@ class ContaPoupanca(Conta):
         self._saldo += self._saldo * taxa * 3
         return self._saldo
 
-
-# ---------- Conta Investimento ----------
 class ContaInvestimento(Conta):
     def __init__(self, numero, titular, saldo=0, limite=1000.0):
         super().__init__(numero, titular, saldo, limite)
@@ -98,7 +92,6 @@ class ContaInvestimento(Conta):
         return self._saldo
 
 
-# ---------- Testes ----------
 if __name__ == '__main__':
     # Tentando instanciar uma Conta diretamente (gera erro)
     try:
