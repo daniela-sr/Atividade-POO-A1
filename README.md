@@ -1,4 +1,4 @@
-# 📘 Projeto de Estudos em Python com Orientação a Objetos
+# Projeto de Estudos em Python com Orientação a Objetos
 
 Olá, eu me chamo Daniela Rodrigues e este repositório contém meus estudos com base na [Apostila de Python com Orientação a Objetos da Caelum](https://github.com/caelum/apostila-python-orientacao-a-objetos). Abaixo, você encontrará um breve resumo dos capítulos estudados, além de um guia rápido para instalar os editores VS Code, PyCharm e Como usar o Google Colab, a plataforma que foi ultilizada durante o semestre nas aulas de Programação Orientada a Objeto (POO).
 
